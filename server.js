@@ -12,4 +12,6 @@ http.createServer((req,res)=>{
         case "/api/verify":
             break;
     }
-}).listen(4824);
+}).listen(4824,()=>{
+    console.log('  == Started Webserver ==  ');
+});

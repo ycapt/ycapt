@@ -17,9 +17,11 @@ let secret;
 
 try{
     secret = fs.readFileSync('./secret.txt').toString();
+    console.log('Found secret!')
 }catch(_){
     secret = generateSecret();
     fs.writeFileSync('./secret.txt',secret);
+    console.log('Generated secret. It is in secret.txt!');
 }
 
 module.exports = secret;
