@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ycapt - settings</title>
+    <script>
+        function secData(data){
+            const datajson = {
+                timestamp: Date.now(),
+                data: data,
+            }
+            const base64 = btoa(JSON.stringify(datajson));
+            return `${base64}`;
+        }
+    </script>
 </head>
 <body>
     
