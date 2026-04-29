@@ -1,21 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ycapt - settings</title>
-    <script>
-        function secData(data){
-            const datajson = {
-                timestamp: Date.now(),
-                data: data,
-            }
-            const base64 = btoa(JSON.stringify(datajson));
-            return `${base64}`;
+<meta charset="UTF-8">
+<title>ycapt</title>
+<style>
+    body {
+        background-color: #000;
+        color: #00ff00;
+        font-family: "Courier New", monospace;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    input, button, textarea {
+        font-family: "Courier New", monospace;
+        background: #111;
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        padding: 8px;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .row {
+        margin: 15px 0;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .outputs {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .outputs input {
+        flex: 1;
+    }
+
+    #terminal {
+        width: 100%;
+        height: 300px;
+        margin-top: 10px;
+        resize: none;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 18px;
+        border-bottom: 1px solid #00ff00;
+        padding-bottom: 10px;
+    }
+</style>
+<script>
+    function secData(data){
+        const datajson = {
+            timestamp: Date.now(),
+            data: data,
         }
-    </script>
+        const base64 = btoa(JSON.stringify(datajson));
+        return `${base64}`;
+    }
+</script>
 </head>
 <body>
-    
+
+<div class="container">
+    <h1>- ycapt | admin -</h1>
+
+    <div class="row">
+        <input type="password" id="password" placeholder="Enter password...">
+    </div>
+
+    <div class="row">
+        <button onclick="generateKeys()">Generate Keys</button>
+        <div class="outputs">
+            <input type="text" id="pubKey" placeholder="Public Key" readonly>
+            <input type="text" id="privKey" placeholder="Private Key" readonly>
+        </div>
+    </div>
+
+    <div class="row">
+        <button onclick="loadLogs()">Logs</button>
+    </div>
+
+    <div class="row">
+        <textarea id="terminal" readonly></textarea>
+    </div>
+</div>
+
+<script>
+function generateKeys() {
+    const password = document.getElementById("password").value;
+
+    let pub = "PUB";
+    let priv = "PRIV";
+
+    if (!password) {
+        pub = "ERROR";
+        priv = "ERROR";
+    }
+
+    document.getElementById("pubKey").value = pub;
+    document.getElementById("privKey").value = priv;
+}
+
+function loadLogs() {
+    const terminal = document.getElementById("terminal");
+    terminal.value = "Hello World" + "\n";
+    terminal.scrollTop = terminal.scrollHeight;
+}
+</script>
 </body>
 </html>
