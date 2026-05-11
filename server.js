@@ -10,6 +10,13 @@ http.createServer((req,res)=>{
         case "/api/create":
             break;
         case "/api/verify":
+            const code = new URL("http://so.me"+req.url).searchParams.get("code");
+            if(code){
+
+            }else{
+                res.writeHead(401,{})
+                res.end(`{"status":"failed"}`)
+            }
             break;
     }
 }).listen(4824,()=>{
